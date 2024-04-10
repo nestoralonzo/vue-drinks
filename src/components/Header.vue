@@ -1,8 +1,12 @@
 <script setup>
 import { computed } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
+import { useDrinksStore } from '../stores/drinks'
 
 const route = useRoute()
+const store = useDrinksStore()
+
+console.log(store.categories)
 
 const isHomePage = computed(() => route.name === 'home')
 
@@ -88,3 +92,4 @@ const isHomePage = computed(() => route.name === 'home')
         background-position: center;
     }
 </style>
+../stores/drinks
