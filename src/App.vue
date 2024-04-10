@@ -3,8 +3,5 @@
 </script>
 
 <template>
-  <h1>From Pinia</h1>
+  <h1 class="m-5">From Pinia</h1>
 </template>
-
-<style scoped>
-</style>
