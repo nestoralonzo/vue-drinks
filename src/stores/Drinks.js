@@ -1,8 +1,11 @@
 import { ref, reactive, onMounted } from 'vue'
 import { defineStore } from "pinia"
 import ApiService from "../services/ApiService"
+import { useModalStore } from "./modal"
 
 export const useDrinksStore = defineStore('drinks', () => {
+
+    const modal = useModalStore()
 
     const categories = ref([])
     const search = reactive({
@@ -10,7 +13,7 @@ export const useDrinksStore = defineStore('drinks', () => {
         category: '',
     })
     const recipes = ref([])
-    const selectedRecipe = reactive({})
+    const recipe = ref({})
 
     onMounted( async () =>{
         const {data: {drinks }} = await ApiService.getCategories()
@@ -24,15 +27,17 @@ export const useDrinksStore = defineStore('drinks', () => {
 
     async function selectRecipe(id) {
         const { data: {drinks}} = await ApiService.getRecipeById(id)
-        Object.assign(selectedRecipe, drinks[0])
+        recipe.value = drinks[0]
+
+        modal.handleClickModal()
     }
 
     return {
         categories,
+        recipe,
+        recipes,
         search,
         searchRecipes,
-        recipes,
         selectRecipe,
-        selectedRecipe,
     }
 })
