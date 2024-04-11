@@ -6,6 +6,8 @@ export default {
     },
     searchRecipes({category, name}){
         return api.get(`/filter.php?c=${category}&i=${name}`)
+    },
+    getRecipeById(id){
+        return api.get(`/lookup.php?i=${id}`)
     }
-
 }
