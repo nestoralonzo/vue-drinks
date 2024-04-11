@@ -86,7 +86,7 @@ const handleSubmit = () => {
                 <input
                   type="submit"
                   class="bg-orange-800 hover:bg-orange-900 cursor-pointer text-white font-extrabold uppercase w-full p-2 rounded-lg"
-                  value="Find recipe"
+                  value="Search recipe"
                 />
             </form>
         </div>
