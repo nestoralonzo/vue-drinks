@@ -7,6 +7,10 @@ const route = useRoute()
 const store = useDrinksStore()
 const isHomePage = computed(() => route.name === 'home')
 
+const handleSubmit = () => {
+    // TODO : validar
+    store.getRecipes()
+}
 </script>
 
 <template>
@@ -42,8 +46,9 @@ const isHomePage = computed(() => route.name === 'home')
             </div>
 
             <form
-                class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
                 v-if="isHomePage"
+                class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
+                @submit.prevent="handleSubmit"
             >
                 <div class="space-y-8">
                     <label 
@@ -55,6 +60,7 @@ const isHomePage = computed(() => route.name === 'home')
                         type="text" 
                         class="p-3 w-full rounded-lg focus:outline-none"
                         placeholder="Name or ingredientes: ej. Vodka, Tequila, etc."
+                        v-model="store.search.name"
                     />
                 </div>
 
@@ -66,6 +72,7 @@ const isHomePage = computed(() => route.name === 'home')
                     <select
                         id="category"
                         class="p-3 w-full rounded-lg focus:outline-none"
+                        v-model="store.search.category"
                     >
                         <option value="">-- Select --</option>
                         <option 
@@ -78,7 +85,7 @@ const isHomePage = computed(() => route.name === 'home')
 
                 <input
                   type="submit"
-                  class="bg-orange-800 hover:bg-orange-900 cursor-pointer text-white font-extrabold uppercase p-2 rounded-lg"
+                  class="bg-orange-800 hover:bg-orange-900 cursor-pointer text-white font-extrabold uppercase w-full p-2 rounded-lg"
                   value="Find recipe"
                 />
             </form>
@@ -94,4 +101,3 @@ const isHomePage = computed(() => route.name === 'home')
         background-position: center;
     }
 </style>
-../stores/drinks
