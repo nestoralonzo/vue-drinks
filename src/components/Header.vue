@@ -9,7 +9,7 @@ const isHomePage = computed(() => route.name === 'home')
 
 const handleSubmit = () => {
     // TODO : validar
-    store.getRecipes()
+    store.searchRecipes()
 }
 </script>
 

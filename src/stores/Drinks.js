@@ -16,7 +16,7 @@ export const useDrinksStore = defineStore('drinks', () => {
         categories.value = drinks
     })
 
-    async function getRecipes() {
+    async function searchRecipes() {
         const {data: {drinks}} = await ApiService.searchRecipes(search)
         recipes.value = drinks
     }
@@ -24,6 +24,7 @@ export const useDrinksStore = defineStore('drinks', () => {
     return {
         categories,
         search,
-        getRecipes,
+        searchRecipes,
+        recipes,
     }
 })
