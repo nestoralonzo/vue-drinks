@@ -2,10 +2,12 @@ import { ref, watch, onMounted, computed } from "vue"
 import { defineStore } from "pinia"
 import { useDrinksStore } from "./drinks"
 import { useModalStore } from "./modal"
+import { useNotificationStore } from "./notification"
 
 export const useFavoritesStore = defineStore("favorites", () => {
   const drinks = useDrinksStore()
   const modalStore = useModalStore()
+  const notification = useNotificationStore()
 
   const favorites = ref([])
 
@@ -34,10 +36,16 @@ export const useFavoritesStore = defineStore("favorites", () => {
 
   function deleteFavorite(id){
     favorites.value = favorites.value.filter(favorite => favorite.idDrink !== drinks.recipe.idDrink)
+    notification.show = true
+    notification.text = 'Remove from favorites'
+    notification.error = false
   }
 
   function addFavorite(){
     favorites.value.push(drinks.recipe)
+    notification.show = true
+    notification.text = 'Added to favorites'
+    notification.error = false
   }
 
   function handleClickFavorite () {
