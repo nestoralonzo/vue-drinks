@@ -36,6 +36,7 @@ const notificationsStore = useNotificationStore()
                   aria-hidden="true"
                 />
                 <CheckCircleIcon
+                v-else
                   class="h-6 w-6 text-green-400"
                   aria-hidden="true"
                 />

@@ -2,13 +2,35 @@
 import { computed } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import { useDrinksStore } from '../stores/drinks'
+import { useNotificationStore } from '@/stores/notification';
 
 const route = useRoute()
 const store = useDrinksStore()
+const notification = useNotificationStore()
+
 const isHomePage = computed(() => route.name === 'home')
 
 const handleSubmit = () => {
-    // TODO : validar
+    if (Object.values(store.search).includes('')) {
+        // notification.text = 'All fields are required'
+        // notification.show = true
+        // notification.error = true
+
+        notification.$patch({
+            text: 'All fields are required',
+            show: true,
+            error: true
+        })
+
+        // notification.$state = {
+        //     text: 'All fields are required',
+        //     show: true,
+        //     error: true
+        // }
+        
+        return    
+    }
+
     store.searchRecipes()
 }
 </script>
