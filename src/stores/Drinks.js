@@ -1,4 +1,4 @@
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, computed } from 'vue'
 import { defineStore } from "pinia"
 import ApiService from "../services/ApiService"
 import { useModalStore } from "./modal"
@@ -32,11 +32,14 @@ export const useDrinksStore = defineStore('drinks', () => {
         modal.handleClickModal()
     }
 
+    const isRecipesEmpty = computed(() => recipes.value.length === 0)
+
     return {
         categories,
         recipe,
         recipes,
         search,
+        isRecipesEmpty,
         searchRecipes,
         selectRecipe,
     }
